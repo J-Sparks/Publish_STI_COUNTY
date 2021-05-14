@@ -1,0 +1,467 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+%\addbibresource{}
+%\usepackage{natbib}
+%\usepackage[nottoc]{tocbibind}
+\usepackage{array}
+\usepackage{wrapfig,subcaption, setspace,booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{natbib}
+%\bibliographstyle{abbrvnat}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\usepackage{lastpage}
+\usepackage{sectsty}
+%\cfoot{Page \thepage \hspace{1pt} of \pageref{LastPage}}
+
+
+%
+\title{State-Level Variables and Gonorrhea Rates:}
+\author{Jay Kim}
+\providecommand{\keywords}[1]{\textbf{\textit{Keywords---}} #1}
+%\textbf{Accepted: }\accepted \\
+%\textbf{Published: } \published \\
+
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+
+\begin{abstract}
+Sexually transmitted infections are a growing public health concern, with the epidemic of gonorrhea's increasing antibiotic resistance being labelled a global crisis by the WHO. STIs have serious economic and social impacts that disproportionately affect women and can lock them into poverty. Studies on reducing STI rates have typically looked for the characteristics of high-risk individuals or specific racial groups, and usually in geographically limited comparisons. This study expands research on STIs rates by asking why sociodemographic factors unique to women affect their rates of STI transmission. The study examines the highest-risk group of women by age (young women, 20-years and older) across the entire United States and DC by looking at how variations in sociodemographic conditions for women between states relate to their different STI rates. Data are drawn from the US Centers for Disaease Control and the US Census for the most current year available (2014). A linear regression model was developed based on 14 sex-specific variables observable at the state-level. The final model uses female separation, poverty, employment, and median age with an adjusted R square value of .603. The implications for social policies are also discussed. While it has been previously observed that STIs can contribute to female poverty, this study points out that this is only part of a viscious cycle since female poverty disposes women to greater STI rates in their youth. Medical interventions in STI preventation should be accompanied by policies which increase the socioeconomic independance of women. Future studies should consider a more longitudinal range of data, comparisons with non-sex-specific variables, and more synergistic interactions between risk factors.
+\end{abstract}
+\keywords{STI, STD, Regression}
+
+\section{Introduction}
+exually transmitted infections (STIs) are a major public health concern because of their ubiquity and socio-economic impact on society. They are among the most common types of human diseases and they place huge burdens on public healthcare systems by causing pain, chronic disease, infertility, and death. Fortunately, several STIs are curable and it is theoretically possible to eradicate them. Despite the emphasis on treatment and prevention, STI rates have continued to climb and in the near future treatment may be impossible for some STIs as they have begun to develop antibiotic resistance. Because funding for new treatments is lacking public policy has looked to prevention as the best near-term solution to reducing growth in STI rates.
+
+	According to the most recent World Health Organization data on STIs, the annual global rate of infection for curable STIs is over 350,000,000; for just chlamydia, gonorrhea, and syphilis it is estimated to be 24,500 new infections per hour \cite{WorldHealth}. Alarmingly, gonorrhea has shown extensive and growing resistance to treatment\cite{Alirol}. Because of gonorrhea's growing antibiotic resistance the WHO has labelled the disease a global health crisis and rolled out several initiatives to combat its spread \cite{Kirkcaldy}. The WHO's multipronged initiative includes surveillance, funding and support to speed up new drug development, and preventative education. The World Bank points out the magnitude of impact STIs have on the global economy in lost productivity and retarding economic growth in developing nations\cite{WorldBank}. STIs work against global economic development and quality of life, especially for marginal countries and populations such as women. Even though the cost of diagnosis and treatment for STIs is low it may be above the means of impoverished populations which further locks them into a vicious cycle of poverty and early mortality \cite{WorldBank}.
+
+	While STIs can have a crippling effect on the development status of lower-income nations, they affect all nations regardless of economic status. The difference is that higher-income nations tend to have more robust surveillance and treatment options. Nevertheless, even high-income countries have seen increases in STI rates. In the United States, the CDC estimates the prevalence of STIs to be over 100 million with an incidence of 20 million, and an economic impact of around 16 billion dollars annually \cite{Owusu},\cite{Satterwhite}. The human costs of STIs in lower and middle-income nations are poorly documented, but in countries like the US the they are well-known \cite{WorldBank}. Untreated STIs can lead to increases in infertility, reproductive morbidity and mortality, stillbirths and early neonatal deaths, anogenital cancers, chronic liver disease, partner violence, divorce, family breakdown, and depression. STIs are also associated with other comorbid diseases or infections such as HIV.
+
+	The effects of STIs are disproportionately higher for women. The complications of STI are more severe for women biologically, socially, and economically. STIs complicate pregnancies and contribute to maternal mortality. Women are more likely to experience social stigma or violence as the result of an STI. And because women are generally employed less or paid less than men they do not have the same access to health services. STIs are a major threat to humanity, especially for women.
+
+	In the United States, recent data from the CDC indicates that not enough is being done to address STIs. There are federally funded control programs for three curable STIs in the US: chlamydia, gonorrhea, and syphilis. Chlamydia is the most common STI, then gonorrhea, then syphilis (primary and secondary combined). From 2015 to 2016 the rate of all three STIs increased. The rate for chlamydia increased 4.74\%, with 9.2\% of 15-19 year old and 8.0\% of all 20-24 year old women being infected\cite{CDC} . Rates for chlamydia are highest among minorities\cite{CDC}. The rate for gonorrhea was at a historic low in 2009, but then increased every year, and was up 18.5\% from 2015 \cite{CDC}. The rate for men was 22.2\% and was 13.8\% for women \cite{CDC}. Again, the rates were highest among minorities, but increased for all ethnic/racial groups regardless\cite{CDC}. Antimicrobial resistance increased from 0.6\% to 3.6\%\cite{CDC} . The rates for syphilis were at historic lows in 2000 and 2001, but increased steadily, most recently by 17.6\% \cite{CDC}. Rates were highest among 20-29 year olds and minorities, but still increased across all age and ethnic groups\cite{CDC} .
+
+	The increases in STI rates in the US are not believed to reflect increasing efficiency in screening. Rather, it appears that there are top-down policy failures in reducing what are essentially preventable diseases that are easy to screen and inexpensive to treat. This is despite the well documented human and economic costs associated with the failure to reduce STI rates. The greatest burden of STIs such as gonorrhea fall on women, despite women being less equipped socioeconomically to contend with this burden.
+
+\subsection{Statement of Problem}
+
+	Several studies on STI rates focus on persons that are at high risk of infection, but little research has been done on how large-scale demographic factors influence STI rates for women. This study seeks to determine the impact of state-level differences in female-specific factors (females' earnings, education, employment status, inequality, insurance status, marital status, poverty, etc.) and public health spending on the rate of gonorrhea among the highest risk age group of young women (20 years and older).
+
+\subsection{Relevance of Problem}
+
+	The majority of studies on STI rates have looked at what categories of individuals are highest risk. From there, they propose policy interventions to reach those individuals with a combination of preventative education, access to health services, testing, and treatment. The political administration of these policies is executed at the state-level and there are significant differences in STI rates between states. However, there is a poor understanding of what demographic variables at the state level drive those differences for women, especially women in the greatest age-determined risk group. Helping states better manage STI rates for women may require more than just medical outreach to at-risk populations. Epidemiological studies suggest the possibility of protective sociodemographic population-level factors for women, but these remain poorly explored for STIs at the national level. This study proposes to help clarify what can be done to improve the situation.
+
+\subsection{Review of Literature}
+
+	National data for the US helps paint a picture of which people are most at-risk for different STIs. For example, women are at greater risk for contracting chlamydia, and men who have sex with men (MSM) are at a greater risk of contracting syphilis. Young people between the ages of 15 to 24 are at higher risks than other age groups for all STIs, as are minorities. This information has been the basis for policy approaches that rely on reaching at-risk groups to help target prevention. However, STI rates within these groups are significantly different between states and the reasons for this are unclear. For example, even though college age women are at a greater risk for STIs than other age groups, why are college age women in some states at a greater risk than in other states? Previous research has documented differences in rates attributable to sex, socioeconomic status, race, region, and education. The conclusions of the studies do not give clear directions for what may drive STI rates at the state-level, but they do present some suggestions for exploration.
+
+	Regarding sex, the prevalence of STI rates among women compared to men may reflect regular screening during gynecological exams, a higher tendency to display symptoms or seek treatment, and more accurate diagnoses \cite{Walker}. Risk factors for gonorrhea among women include previous gonorrheal infection, other current STI, HIV infection, new or multiple partners, inconsistent condom use, commercial sex work, and drug use \cite{Walker}. It appears that perceptions around risk, specifically not seeing oneself as at-risk, explain infection better than simple sex/gender differences \cite{Gullette}. As a result, while sex rates among STIs tend to be different, the factors that drive those rates may not be influenced by sex. Rather, previous infections and riskier sexual behavior may be better predictors. These factors are individual-level and cannot explain nation wide differences in STI rates for women.
+
+	Population-level socioeconomic factors have been proposed to influence STI rates. The socioeconomic sstatus (SES) of census areas in New York state was found to correlate with gonorrhea rates independent of community demographics, in this case the rate ratio given as a 5\% increase in household poverty rate = 1.08 \cite{Anne}. However, demographics appeared to have some effect when changes in socioeconomic status were controlled  \cite{Anne}. Similar effects for poverty and race were observed in California where there was a strong positive relationship between poverty rates and infection, though again mitigated by ethnic grouping in one case \cite{Springer}. The effect of ethnic grouping trumping poverty in that grouping may have been due to geographic clustering. A study of gonorrhea rates in King County, Washington found rates to be associated with age, gender, ethnicity, SES, and residence; in particular, rates were highest among teenage African-American women in the lowest SES census tracts \cite{Rice}. In general, higher rates of gonorrhea have been associated with ethnic or racial minorities in the US\cite{Walker}. Poverty appears to correlate to STI rates and the effect may be magnitudes higher when considering how poverty disproportionately affects minorities and women.
+
+	Poverty rates correlate to different population-level factors such as urbanization or historical legacies. In the US, urban and regional poverty may account for some differences in STI rates. The prevalence of gonorrhea across regions in the US is documented, with the southern US being a higher risk area\cite{Walker}. A study of gonorrhea rates in a rural North Carolina county compared them to existing urban data at the time and found that while case numbers did not cluster as in urban areas, case rates did \cite{Thomas}. Contributing factors included greater poverty, limited access to healthcare, lack of anonymity (leading people to avoid screening, treatment, or reporting risky behavior), and the exchange of sex for drugs\cite{Thomas}. Looking at region and ethnicity together, it appears that ethnic grouping is more powerful than regional or economic grouping because race acts as a proxy variable representing factors such as chronic joblessness, drug and alcohol marketing, a lack of social capital, and male incarceration\cite{Farley}. Demographic grouping, however, may mask risk by conflating ethnic groups with either protective or vulnerable factors \cite{Zweig}. An examination of metropolitan Boston found urban rates to be higher than the national average, especially for pockets of minority communities; this effect persisted despite universal access to healthcare coverage in the region \cite{Cattley}. Furthermore, it was found that city-level statistics diluted the effects observed at the neighborhood level which may exist because of social network patterns \cite{Cattley}. A national county-wide examination of gonorrhea rates found them to correlate with urban ranking, percentage of women, and poverty - but these effects were secondary to the regional effect of HIV incidence (Coeff: 1.26, 95\% Confidence Interval (CI): 0.86, 1.66, P<0.001) \cite{Andreatos}. Based on these studies, it is safe to conclude that regional variations in STI rates represent some deeper variations within the populations they encompass. The exact nature of that variation is not completely understood, nor how specific that variation is to women. 
+
+	Education has been proposed as a mediating factor in STI rates. One study suggested that a curvilinear relationship exists between adolescents' intelligence and sexual behavior - presumably, smarter kids have later and safer sexual behavior \cite{Halpern}. However, this is confounded by the fact that educational attainment does not appear to negate effects of ethnicity or race as STI rates remain significantly different among groups even at the same educational level\cite{Annang}. Negative parental attitudes about early sexual experience (adjusted odds ratio, 0.89; 95\% confidence interval, 0.81-0.99) as well as higher grade point averages in school (adjusted odds ratio, 0.84; 95\% confidence interval, 0.71-0.99 ) may confer protective effects on STI for women, though not men \cite{Ford}. Regarding this gendered difference, other studies have found that academic engagement for women may limit their sexual behavior while sexual behavior does not appear to reduce their academic engagement; the same is not true for men where sexual behavior appears to reduce academic involvement \cite{Ohannessian}. There do not appear to be significant ethnic or gender differences in age at first intercourse or sexual activity among teenagers \cite{Scott}. 
+
+	In the above studies, most considered small groups or confined populations\cite{Gullette},\cite{Rice},and \cite{Thomas}. Several looked at variations within states at smaller scales, but not between states \cite{Anne} and \cite{Springer}. Of those looking at variations between states, the focus was on explaining a single variable \cite{Farley}. Commonly referenced variables affecting STI rates include poverty, sex, ethnicity / race, age, and education. These are clearly powerful, but their interaction and effects across various administrative populations remains murky. For example, there may be combined effects among risk factors that explain the variation being discussed - such as how STI rates for southern African-American women ages 15 to 24 end up being significantly higher than for their peers in different regions or ethnic groups (as seen in \cite{Walker}. However, variables such as race are not intrinsic factors - they reflect other conditions in which these groups are embedded. For example, rates of poverty and economic burdens are higher for young African-American women in the southern US than their peers. These externalities can also be found reflected in rates of educational attainment, access to healthcare, etc. That is, many variables may be acting as proxies for sociodemographic disparities among populations and between states.
+
+	Sociodemographic variables that describe characteristics of populations are known to correlate with other public policy issues. For example, poverty rates are known to drive issues such as homelessness and tuberculosis rates. There is reason to suspect that such factors may also contribute to the spread of STIs like gonorrhea. It appears that few studies have looked into the magnitude of effects for these variables at the state-level for women across the country in the highest risk age group. While STI rates remain highest among female populations, how do the sociodemographic disparities within a state affect its STI rate? Because this question remains mostly unanswered, this study proposes to clarify the issue by looking at how state-level sociodemographic factors unique to women affect gonorrhea rates among the highest risk age group using variables related to age, income, education, employment, inequality, insurance coverage, marital status, poverty, and public health expenditures.
+% this is chapter 2 DATA
+
+\section{Data}
+
+	The Centers for Disease Control (CDC) in the United States offers datasets on several STIs that are thorough and regularly maintained. This study uses rates of transmission (per 100,000) for gonorrhea among young women 20 years and older. There are four reasons. First, this is the most dangerous STI because of its extensive and growing antibiotic resistance. Second, this is the highest risk group by age and sex. Third, the socioeconomic impact and public health burden is highest for this group. Fourth, these rates are normally distributed.
+	
+	Because STI rates are assigned at the state-level, the populations for this study are the 50 states and the District of Colombia. Data which describe variations among these populations are pulled from the US Census Bureau (majority pulled from the American Community Survey, or ACS), Health Resources and Service Administration (HRSA), the CDC, and the Trust for America's Health (TFAH). Control data for comparison is taken from the United States Department of Commerce's National Oceanic and Atmospheric Administration (NOAA).
+	
+
+\subsection{Description of Data}
+
+	Sociodemographic variables selected for this study describe demographic variations in populations of women at the state-level. The variables reflect differences in age, earnings, education, employment status, inequality, insurance status, marital status, poverty, and public health spending. Data are taken from 2014, the most recent year of available data for STI rates from the CDC. Because the Census Bureau operates data collection centennially, the demographic variables are drawn from the ACS's five-year estimates (as opposed to one-year estimates) in order to increase their accuracy. 
+
+	The dependent variables are the gonorrhea rates for 20-years-and-older young women across the United States. The most recent fully available data on gonorrhea rates among women across the country comes from the CDC's 2014 rates. The CDC breaks these rates down into eight age groups: all ages, 0-14, 15-19, 20-24, 25-29, 30-34, 35-39, and 40+. The age group of 20-24 has the highest rate across 45 states and second highest in the remaining five states and DC. Those six areas differ only minimally. The distribution of rates among these women across all 51 areas is normal. Refer to Table 4.1.
+	
+	Fourteen independent state-level variables were explored for this model, including the proportion of females in the highest risk age group, the female median age, the proportion of the female population, females' median earnings, the proportion of females with at least a bachelor's degree, the rate of female employment, the rate of female unemployment, the rate of uninsured females, the proportion of married females, the proportion of separated females, the proportion of divorced females, the proportion of single females, the female poverty rate, and the Gini index. With the exception of the Gini index, all looked at sociodemographic differences between states that are unique to women.
+
+	The variables that represent differences between females at the state-level all come from the Census Bureau's 2010 data set using the more accurate five-year estimates. These variables all represent differences in the conditions for women-as-a-whole between each state. These are the conditions that young women are immersed in as a population distinct from men. The proportion of young women was explored to see if states with a greater number of at-risk women have higher rates. The female median age was explored to see if younger-skewing states have higher rates. Female median earnings, education, employment, unemployment, marital status, and poverty were explored for their socioeconomic effects.
+
+	The Gini coefficient was explored to see if general economic inequality would be more powerful than sex-specific inequality. Poverty in general has public health effects, but it is unclear how it compares to sex-specific poverty for gonorrhea.
+
+	Public health spending per capita and HIV/AIDS spending derived from HRSA and TFAH data were considered. Per capita spending represented a combination of CDC, HRSA, and state funding for public health programs. HIV/AIDS spending was considered because no data was available for STI-specific spending outside of the disease, and HIV/AIDS reduction practices overlap with STI reduction practices as well. These variables were explored to see how state spending on public health may affect gonorrhea rates, but they were ultimately abandoned because they lacked sufficient explanatory power. The implication is that, regarding the data available for this study, differences in public health spending does not seem to influence gonorrhea rates across the nation.
+
+	Geographic conditions for each state such as area, population density, and urbanization were considered for comparison because previous studies suggested they may play a role for differences found within states. These variables were quickly abandoned for this study as their effects were too small to account for any variation in gonorrhea rates between states. That is, the concentration of females in each state did not appear to offer any explanatory power for nation wide variations in gonorrhea.
+
+	Lastly, a control sets was prepared to use as a basis of comparison to the variables described above. For control, data was taken from the United States Department of Commerce's National Oceanic and Atmospheric Administration to account for mean 12-month precipitation (measured in inches) in each state as of December 2014. Precipitation is geographically influenced and unique between each state, but presumably has no connection to gonorrhea rates. Any good variable should be able to account for more impact on gonorrhea rates than average rainfall; this was true for all female-specific variables tested in this study.	
+
+\subsection{Method of Analysis}
+
+	In this study, the dependent variables are the STI rates for gonorrhea among females 20-years-and-older in each state and DC. The fourteen independent variables are the sociodemographic factors uniquely associated with females for each state along with a general measure of inequality for comparison. By using multiple linear regression analysis to assess the relationship between the gonorrhea rates among highest age-risk females and their sociodemographic landscape, this study is exploring variables unique to women which can be said to drive gonorrhea rates up or down across the whole of the United States.
+  
+\subsection{Variable Coding}
+
+\subsubsection{Dependent Variable: Gonorrhea Rate}
+
+	For this study, the dependent variable is the gonorrhea rate from each state and DC. It is calcualted by the CDC for each state's population per 100,000. 
+
+\[STI=\frac{CASE numbers}{POPULATION}\]
+
+The rate of gonorrhea includes the rate among the highest risk group of women by age.
+	
+\subsubsection{Independent Variables}
+
+	For this study, there are 14 independent variables as taken from Census Bureau data. For each state they include: females 20 and older (the proportion of females in the highest risk age group); female median age; female population (the proportion of the female population); female median earnings; female bachelor's degree (the proportion of females with at least a bachelor's degree); female employment; female unemployment; female uninsured; females married; females divorced; females separated; females sigle; female poverty; and Gini index.
+
+% this is Chapter 3 Methods
+\section{Methods}
+
+	This study generates a model using multiple linear regression (MLR) analysis, which is a statistical approach used to determine a relationship between a dependent variable and a number of independent variables.
+
+\subsection{Multiple Linear Regression Analysis}
+
+	The dependent variable is a linear function of more than one independent variable. Linear regressions are mostly fitted using the least squares approach. The MLR model is a classic technique providing several advantages: simplicity, interpretability, possibility of being adjusted over the transformations of the variables, and the performance of reasoning supposition. In includes hypotheses of normality, homoscedasticity, and correlation between the error and the predictor parameter.
+
+\subsection{Assumptions of the Model}
+
+	Multiple linear Regression Analysis (MLRA) looks at correlation by developing a straight line which best predicts all the individual data points between the variables. This depends on at least two basic assumptions. First, the explanatory variables are independent of one another. And second, the dependent variable is normally distributed with a zero mean and constant variance. In regression equations, collinearity between explanatory variables can cloud the analysis. 
+
+	MLR also assumes that independent variables can be any scale (ratio, nominal, etc.) and dependent variables need to be ratios or expressed percentages. They must be normally distributed overall and normally distributed for each value of the independent variable. If the dependent variable is not normally distributed it can be transformed. Samples must be representative of a population with no or little multicollinearity. This can be checked using tolerances and VIF values. If the VIF is between 1 to 10, then there is no multicollinearity; greater than 10 indicates the opposite.
+
+
+\subsection{Formulation of the Model}
+
+	The relationship between the dependent and independent variables should be linear. When their scores are graphed along an $X$ and $Y$ axis they should tend to form a straight line. Barring that, other methods of analysis must be employed to assess their interactions. Likewise, for every value of $X$, the distribution of values across $Y$ must have approximately equal variability or homoscedasticity. 
+
+	The dependent variables are the gonorrhea rate $Y_i$ and the set of $i$ independent variables include females 20 and older, female median age, female population, female median earnings, female bachelor's degree, female employment, female unemployment, female uninsured, females married, females divorced, females separated, females single, female poverty, and Gini index.  The multiple linear regression model assumes that the mean of the gonorrhea rates are determined by the values of the independent variables in a linear combination as given below.
+	
+\begin{equation}
+ \mathcal{Y}_{i}= \alpha + \beta_{1}{X_1} + \beta_{2}{X_2} + ...  + \beta_{p}{X_p} 
+\end{equation}
+\newline
+
+$Y_i$= Gonorrhea rate females 20 and older\newline
+
+$X_p$= Independent variables (females 20 and older, female median age, female population, female median earnings, female bachelor's degree, female employment, female unemployment, female uninsured, females married, females divorced, females separated, females single, female poverty, and Gini index)\newline
+
+$\alpha$= intercept constant\newline
+
+$\beta_p$= regression coefficient\newline
+
+where $i$= 51,  $p$= 14.
+
+% this is Chapter 4 Analysis and results
+\section{Analysis and Results}
+
+\subsection{Software}
+
+In this study, IBM's SPSS statistical package (ver. 24.0.0.0) was used to generate the MLR models.
+
+\subsection{Test of Normality}
+
+	The normality of the dependent variable was tested to address one of the assumptions of MLRA. The Shapiro-Wilk test was performed and the results are shown in Table 4.1. 
+	
+\begin{table}[h!]
+\caption{\textbf{Shapiro-Wilk Test of Normality}}
+\centering
+\begin{tabular}{||c | c c c||} 
+ \hline
+ & Statistic & df & Sig.\\ [0.5ex]
+ \hline\hline
+ Gonorrhea Rate Females 20 and Older 2014 & .959 & 51 & 0.079\\[1ex]
+ \hline
+  
+\end{tabular}\\
+\end{table}
+\begin{center}
+$H_0$: The data is normaly distrubuted
+\linebreak
+$H_a$: The data is not normally distributed
+\end{center}
+
+The P-value = 0.079  is greater than the $\alpha$ = 0.05, therefore fail to reject $H_0$. 
+
+\subsection{Multiple Linear Regression}
+
+	A stepwise multiple linear regression was performed on the data in SPSS. The results generated four models based on the strongest predictors. These included females separated, female poverty, female employment, and female median age. The R Square values did not increase above .500 until the three- and four-variable models. In every case, females separated and female poverty were important, but less than without the addition of female employment and female median age. The fourth model had an Adjusted R Square value of .603. See Table 4.2 for the model summaries.
+	
+\begin{table}[h!]
+\caption{\textbf{Model Summaries}}
+\centering
+\begin{tabular}{||c | c c c c||} 
+ \hline
+Model & R & R Square & Adjusted R Square & Std. Error of the Estimate\\ [0.5ex]
+ \hline\hline
+1 & .632 & .399 & .387 & 220.11693\\
+2 & .682 & .465 & .443 & 209.75596\\
+3 & .753 & .567 & .539 & 190.81830\\
+4 & .797 & .634 & .603 & 177.16244\\ [1ex]
+ \hline
+ \end{tabular}\\
+Dependent Variable: \textit{Gonorrhea Rate Females 20 and Older 2014}\\
+Model 1 Predictors: \textit{1) females separated}\\
+Model 2 Predictors: \textit{1) females separated, 2) female poverty}\\
+Model 3 Predictors: \textit{1) females separated, 2) female poverty, 3) female employment}\\
+Model 4 Predictors: \textit{1) females separated, 2) female poverty, 3) female employment, 4) female median age}\\
+\end{table}
+
+	In terms of coefficients, females separated on its own in Model 1 had a significance of .558, but this decreased to .000 by Model 3 as the Adjusted R Square value passed .500. No negative linear effects were observed until the addition of female median age in Model 4. The significance of the Model 4's constant reached .084. There was low collinearity among the variables. The maximum VIF observed was 1.696 for females separated starting in Model 3. See Tables 4.3 through 4.7.
+	
+\begin{table}[h!]
+\caption{\textbf{Model 4 ANOVA}}
+\centering
+\begin{tabular}{||c | c c c c c||} 
+ \hline
+ & Sum of Squares & df & Mean Square & F & Sig.\\ [0.5ex]
+ \hline\hline
+Regression & 2506228.368 & 4 & 626557.092 & 19.963 & .000\\
+Residual & 1443780.441 & 46 & 31386.531 & & \\
+Total & 3950008.809 & 50 & & &\\[1ex]
+ \hline
+  \end{tabular}\\
+\begin{center}
+$H_0$: $\beta_p$ = 0,  p=1,..,4
+\linebreak
+$H_a$: $H_0$ is not true
+\end{center}
+The P-value = 0.000  is much less than the $\alpha$ = .05, therefore  reject $H_0$. \newline
+
+Dependent Variable: \textit{Gonorrhea Rate Females 20 and Older 2014}\\
+Predictors: \textit{1) females separated, 2) female poverty, 3) female employment, 4) female median age}\\
+ \end{table}
+ \begin{table}[h!]
+\caption{\textbf{Model 4 Coefficients}}
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{||c | c c c c c||} 
+ \hline
+ & Unst. Coef. B & Unst. Coef. Std. Error & Stn Coef. Beta & t & Sig.\\ [0.5ex]
+ \hline\hline
+(Constant) & -927.129 & 525.677 &  & -1.764 & .084 \\
+females separated & 233.482 & 47.630 & .569 & 4.902 & .000 \\
+female poverty & 35.120 & 9.532 & .419 & 3.684 & .001 \\
+female employment & 24.917 & 5.820 & .470 & 4.281 & .000 \\
+female median age & -30.800 & 10.549 & -.277 & -2.920 & .005 \\[1ex]
+\hline
+ \end{tabular}}\\
+\begin{center}
+$H_0$: $\beta_p$ = 0,    p= 1,...,4
+\linebreak
+$H_a$: $H_0$ is not true
+\end{center}
+The P-value for each predictors  .000, .001, .000, and .005 less than $ \alpha$=.05, therefore reject the $H_0$.\newline
+Dependent Variable: \textit{Gonorrhea Rate Females 20 and Older 2014}\\
+Predictors: \textit{1) females separated, 2) female poverty, 3) female employment, 4) female median age}\\
+ \end{table}
+ 
+ \begin{table}[h!]
+\caption{\textbf{Model 4 Collinearity Coefficients}}
+\centering
+\begin{tabular}{||c | c c||} 
+ \hline
+ & Tolerance & VIF\\ [0.5ex]
+ \hline\hline
+(Constant) & & \\
+females separated & .589 & 1.696 \\
+female poverty & .615 & 1.625 \\
+female employment & .659 & 1.518 \\
+female median age & .886 & 1.129 \\[1ex]
+\hline
+ \end{tabular}\\
+\begin{center}
+Tolerance = 1 - $R^2$,  VIF = 1 / Tolerance\newline
+If the VIF value $>$ 10, indicate the  multicollinearity issue
+\end{center}
+Dependent Variable: \textit{Gonorrhea Rate Females 20 and Older 2014}\\
+Predictors: \textit{1) females separated, 2) female poverty, 3) female employment, 4) female median age}\\
+ \end{table}
+   \begin{table}[h!]
+\caption{\textbf{Model 4 Collinearity Diagnostics}}
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{||c | c c c c c c c||} 
+ \hline
+ Dimension & Eigen. & Cond. Index & (Constant) & Var. Pro. 1 & Var. Pro. 2 & Var. Pro. 3 & Var. Pro. 4\\ [0.5ex]
+ \hline\hline
+1 & 4.891 & 1.000 & .00 & .00 & .00 & .00 & .00\\
+2 & .083 & 7.696 & .00 & .37 & .02 & .01 & .00\\
+3 & .021 & 15.197 & .00 & .53 & .85 & .01 & .00\\
+4 & .003 & 39.509 & .01 & .04 & .04 & .71 & .58\\
+5 & .002 & 55.112 & .99 & .06 & .09 & .27 & .41\\[1ex]
+\hline
+ \end{tabular}}\\
+Notice that the correlation between poverty and employment is .85
+Dependent Variable: \textit{Gonorrhea Rate Females 20 and Older 2014}\\
+Predictors: \textit{1) females separated, 2) female poverty, 3) female employment, 4) female median age}\\
+ \end{table}
+  \begin{table}[h!]
+\caption{\textbf{Model 4 Residual Statistics}}
+\centering
+\begin{tabular}{||c | c c c c c||} 
+ \hline
+ & Minimum & Maximum & Mean & Std. Dev. & N\\ [0.5ex]
+ \hline\hline
+Predicted Value & 89.7285 & 1101.8052 & 501.0257 & 223.88517 & 51 \\
+Residual & -352.82428 & 358.21597 & .00000 & 169.92825 & 51 \\
+Std. Predicted Value & -1.837 & 2.683 & .000 & 1.000 & 51 \\
+Std. Residual & -1.992 & 2.022 & .000 & .959 & 51 \\[1ex]
+\hline
+ \end{tabular}\\
+Notice that the standard prdicted value and redisudale are mean = .000, and Std Dev. = .959
+\newline
+Dependent Variable: \textit{Gonorrhea Rate Females 20 and Older 2014}\\
+Predictors: \textit{1) females separated, 2) female poverty, 3) female employment, 4) female median age}\\
+ \end{table}
+	Some of the excluded variables showed modest negative linear effects, including female median earnings, female bachelor's degree, and females married. Among the excluded variables the highest VIF observed was 3.130 for female unemployment in Model 4. While the Gini index had a stronger effect than some variables, it was not enough to include in any final model. See Table 4.8.
+ \begin{table}[h!]
+\caption{\textbf{Model 4 Excluded Variables}}
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{||c | c c c c c c c||}
+ \hline
+ & Beta In & t & Sig. & Part. Corr. & Collinearity Tol. & VIF & Minimum Tol.\\ [0.5ex]
+ \hline\hline
+females 20-24 & -.092 & -.686 & .496 & -.102 & .450 & 2.221 & .420 \\
+female population & .019 & .151 & .881 & .022 & .520 & 1.923 & .443\\
+female median earnings & .049 & .432 & .668 & .064 & .629 & 1.591 & .441\\
+female bachelor's degree & -.044 & -.415 & .680 & -.062 & .723 & 1.383 & .539\\
+female unemployment & .244 & 1.573 & .123 & .228 & .320 & 3.130 & .320\\
+female uninsured & .015 & .112 & .912 & .017 & .465 & 2.149 & .465\\
+female married & -.036 & -.324 & .748 & -.048 & .645 & 1.550 & .461\\
+females divorced & .039 & .347 & .730 & .052 & .626 & 1.598 & .531\\
+females single & -.015 & -.144 & .886 & -.021 & .784 & 1.276 & .509\\
+Gini index & -.064 & -.539 & .593 & -.080 & .578 & 1.730 & .477\\[1ex]
+\hline
+ \end{tabular}}\\
+\begin{center}
+$H_0$: $\beta_p$ = 0,   p= 1,...,14
+\linebreak
+$H_a$: $H_0$ is not true
+\end{center}
+The P-values are much greater than  $ \alpha$=.05, therefore fail to reject the $H_0$\newline
+Dependent Variable: \textit{Gonorrhea Rate Females 20 and Older 2014}\\
+Predictors: \textit{(Constant), females separated, female poverty, female employment, female median age}\\
+ \end{table}
+ 
+\section{Conclusion}
+
+\subsection{Summary of the Results}
+
+	The results of the MLR analysis of gonorrhea rates among young women indicate that nationwide variations in gonorrhea rates can be attributed to some combinations of state-level sociodemographic variables. Specifically, increases in the proportion of separated females and female poverty were particularly important as they have a positive linear relationship with gonorrhea rates. As these increase, so do gonorrhea rates among young women. However, their effect is not strong until the additional of female employment and female median age. Female employment also has a positive linear relationship, while female median age has a negative linear effect.
+
+	Among the variables explored, no combination appeared to have as much impact as the four variables used in Model 4. A few variables had negative learn effects such as earnings, education, and marriage. The unemployment had some positive linear effect. In all cases, these effects were minimal. The Gini index appeared to be less important than any combination of female-specific variables.
+
+\subsection{Discussion}
+
+	Interpreting the results is complicated. Some protection against gonorrhea appears to be offered by higher earnings, education, and marriage rates, but this effect is relatively small. Factors that might be expected to drive gonorrhea rates up such as the proportion of uninsured women offer weak effects. At the state-level, these variables do not seem to be very important.
+
+	For factors which rive gonorrhea rates, female poverty and median age are the easiest to interpret. Understanding the female separation and employment is more difficult.
+
+	Female poverty is a broader variable than either income or education as it includes more dimensions. It is also much more representative of the effects of inequality specific to women with regard to gonorrhea. As women's poverty goes up, so does the incidence of gonorrhea. This may be because impoverished women have less discretion over potential partners when economic necessity pushes them towards riskier sexual behaviors. If women are left to economic dependency upon men it exposes them to more risk. The best way to remedy such a situation would be to support any policy which increases women's socioeconomic status relative to men.
+
+	Female median age appears to confer a protective factor to the extent that populations with more older women have lower gonorrhea rates. This is logical when considering that older populations would have fewer women in the highest-risk age group. While it is not possible to externally increase the median age of a population, this result suggests that increasing the economic independence of states with younger women is perhaps a good priority. As those women age out of high risk the protective effects may be self-sustaining.
+
+	Curiously, the female employment rate appears to drive gonorrhea rates alongside female poverty. If employment is a solution to poverty, why would they both drive rates upwards? The contradiction can be interpreted at least two ways. It is possible that employment increases women's exposure to potential sexual partners by increasing the scale of their social interactions. If part of an STI's risk is a function of how many people one meets, this could be possible. However, it seems unlikely to be so powerful as to warrant inclusion in the model. An alternate interpretation seems more useful. It cannot be assumed that employment alone leads to reductions in poverty, especially for women. The phenomenon of relative poverty increasing alongside employment well known; in fact, it has been dubbed "working poverty". The data used in this study did not account for proportions of women that could be considered among the working poor. Considering that female poverty appears so important to gonorrhea rates, it is possible there is an unobserved effect of female employment failing to resolve female poverty. Without further study, this cannot be untangled. In terms of policy though, supporting livable wages in general and especially for women should be uncontroversial.
+
+	Lastly, the effect of separated females in a population is the least clear. This unique category of women describes those that are married but living apart from their spouses. The reasons for separation are not captured in the census data. It is extremely compelling that separation should increase affect gonorrhea rates more than marraige or divorce. It is possible that this variable is capturing an effect related to both the social impact of STIs and inequality. STIs like gonorrhea have been observed to lead to the dissolution of marriages and families. In other words, when a married partner contracts and STI the implication of infidelity can end the relationship. In this case, separation could be representing such an post-hoc effect - that a couple is living apart because an STI has already contributed towards the end of the relationship. It is possible that a couple could recover and stay married, but even if they proceed to divorce, several states have minimum waiting periods and some couples do not have the financial means to cover the legal costs of divorce. Economic necessity could drive a couple to live separately to improve their income, but an obvious connection to gonorrhea rates is missing. It seems more likely that this variable is indicating the effects of an STI while the couple remains married for some other reason. In light of the importance of female poverty highlighted in this study, it also seems like economic hardship for women could lead to this outcome. More exploration of the connection between STI rates and separation would be needed to clarify this point.
+
+	Overall, the results of this model suggest that women who grow up in states with fewer opportunities for their economic independence will be exposed to a greater risk of gonorrhea regardless of their access to education, jobs, or health insurance. Health based interventions should continued to focus on preventing the spread of STIs like gonorrhea through education and screening, but national data suggests that the best solutions will require policies outside of just public health. The health of a population also depends upon its economic resilience and, for women especially, better socioeconomic conditions appear to reduce their risk for gonorrhea. This is especially important because STIs disproportionately affect women and, compared to their male counterparts, they are less equipped to bear the costs of gonorrhea. Simply creating more jobs for women will not enough - they should be jobs with livable wages. National and state policies should consider the socioeconomic advancement of women as a key component of mitigating the growing epidemic of antibiotic resistant STIs like gonorrhea.
+
+\subsection{Limitations of Study}
+
+	This study was limited by its organization of populations at the state-level, using only one year of data, using only simple measurements, considering only women in one group without additional subdivisions, and for comparing against only one STI.
+
+	This study used states for the sample population. This is because states are a political administrative population with readily available data that can still represent the entire nation. However, the political administrative division of states may not be the best unit of analysis. States do not always represent the geographic distribution of major populations since a highly concentrated population may find itself split across more than one state. The distribution of sociodemographic factors across states is not uniform. Smaller units such as cities, counties, geozips, or GIS coordinates may give different results than this study.
+
+	This study used data from a single interval taken in 2014. This is because of limitation in the scope of the study. However, STI rates have been observed to change over time; specifically, they are increasing after a few decades of reductions. It is not possible to determine how specific the effects of this model are to 2014 versus multiple intervals. 
+
+	This study used only simple descriptive variables. This is because they were readily available and the easiest to interpret within the scope of the project. However, variables that represent functions could provide further insight into gonorrhea rates. It is not possible to determine what degree these variables should be weighted or how changes in their relationship to other descriptors would affect the results.
+
+	This study considered only women and female-specific variables drawn from the state-level. This is because women are disproportionately impacted by STIs and factors that affect them distinctly from men at this level are not clearly understood. However, women represent roughly half of any population and it is possible that male-specific or non-gender-specific variables affect them. This study did not consider how gonorrhea rates among men or in-total are affected by female-specific variables. It is possible that the effects observed in this study are not the strongest or not unique to women.
+
+	This study considered women without racial subgroupings. This is because the data for racial subgrouping is more complex with many colinear variables as racial groupings track closely with socioeconomic variation. However, other studies have indicated that racial grouping is an extremely important variable at smaller geographic scales. It is possible that the effects observed in this study's model do not apply equally to women in different racial groups when controlling for age.
+
+	This study considered only young women. This is because they are the highest risk group by a large margin. However, the effect of the variables used in this model on other age groups of women was not explored. It is possible that these effects are very specific to young women, or affect all women.
+
+	This study considered only gonorrhea. This is because it has been identified as an epidemic because of its increasing rates and growing antibiotic resistance. However, all STIs are public health issues and their prevention is medically similar. It cannot be determined if the effects observed in this study are unique to gonorrhea or if they also apply to other STIs.
+
+	As a result of these limitations, more specific interpretations and policy suggestions cannot be made outside of the scope of this study. With that in mind, the results appear to give more insight into how poverty, inequality, and disparity impact society. In the case of gonorrhea, poorer socioeconomic prospects drive rates up for women, though age may provide some inherent protection as they grow out of the highest risk group.
+
+\subsection{Suggestions for Future Studies}
+
+	The model developed in this study examines a specific segment of a very large population for only one STI and only one year. Two variables in the model are fairly straightforward - female poverty and median age. The variables of female separation and employment are more difficult to interpret clearly. They may be aberrant and inconsistent in a larger time series analysis. The effects of the model across other sexes, ages, races, STIs, and scales is unknown. And the simple variables in this study may obscure more dynamic processes.
+
+	Future studies should explore what relationships are being expressed by female separation and employment. These two variables are particularly tricky to interpret and hint at more complex processes. Efforts should be made to account for women as working poor, and also the economic implications of marital separation.
+
+	Future studies should also explore how changes in sociodemographic variables at the state-level relate to STI rates over time. This should include looking at other STIs such as chlamydia and syphilis as well as additional subgroupings of women (e.g. by age or race). It should also involve exploring more dynamic variables, ones that are derived from functions in the descriptive data available from the CDC and Census Bureau. It should also consider how the effects change if the scale is moved from state-level to county-level.
+
+
+
+\begin{thebibliography}{11}
+
+\bibitem{Alirol}
+Alirol, Emilie, Teodora E. Wi, Manju Bala, et al. 2017.	\textit{Multidrug-Resistant Gonorrhea}: A Research and Development Roadmap to Discover New Medicines. PLoS Medicine 14(7): e1002366.
+
+\bibitem{Andreatos}
+Andreatos, Nikolaos, Christos Grigoras, Fadi Shehadeh, et al. 2017.	\textit{The Impact of HIV Infection and Socioeconomic Factors on the Incidence of Gonorrhea}: A County-Level, US-Wide Analysis. PloS One 12(9): e0183938.
+
+\bibitem{Annang}
+Annang, Lucy, Katrina M. Walsemann, Debeshi Maitra, and Jelani C. Kerr. 2010.	\textit{Does Education Matter? Examining Racial Differences in the Association between Education and STI Diagnosis among Black and White Young Adult Females in the US. Public Health Reports 125(4suppl)}: 110-121.
+
+\bibitem{Cattley}
+Cattley, Catherine, Paola Massari, and Caroline A. Genco. 2015.	Incidence of Gonorrhea and Chlamydia in Urban Settings: The Case for Neighborhood Level Analysis in Boston. Advances in Infectious Diseases 5(04): 162.\newline
+
+\bibitem{CDC}
+Centers for Disease Control and Prevention. 2017.\textit{Sexually Transmitted Disease Surveillance 2016. Atlanta: U.S. Department of Health and Human Services}. \url{https://www.cdc.gov/std/stats16/toc.htm}\newline
+\bibitem{Anne}
+Du, Ping, Louise-Anne McNutt, Patricia O'Campo, and F. Bruce Coles. 2009.	\textit{Changes in Community Socioeconomic Status and Racial Distribution Associated with Gonorrhea Rates}: An Analysis at the Community Level. Sexually Transmitted Diseases 36(7): 430-438.\newline
+\bibitem{Farley}
+Farley, Thomas A. 2006.	\textit{Sexually Transmitted Diseases in the Southeastern United States}: Location, Race, and Social Context. Sexually Transmitted Diseases 33(7): S58-S64.\newline
+\bibitem{Ford}
+Ford, Carol A., Brian Wells Pence, William C. Miller, et al. 2005.	\textit{Predicting Adolescents' Longitudinal Risk for Sexually Transmitted Infection}: Results from the National Longitudinal Study of Adolescent Health. Archives of Pediatrics and Adolescent Medicine 159(7): 657-664.\newline
+\bibitem{Gullette}
+Gullette, Donna L., Janet L. Rooker, and Robert L. Kennedy. 2009.\textit{Factors Associated with Sexually Transmitted Infections in Men and Women}. Journal of Community Health Nursing 26(3): 121-130.\newline
+\bibitem{Halpern}
+Halpern, Carolyn Tucker, Kara Joyner, J. Richard Udry, and Chirayath Suchindran. 2000.\textit{Smart Teens Don't Have Sex (or Kiss Much Either)}. Journal of Adolescent Health 26(3): 213-225.\newline
+\bibitem{Kirkcaldy}
+Kirkcaldy, Robert D. 2016.	\textit{Neisseria Gonorrhoeae Antimicrobial Susceptibility Surveillance-the Gonococcal Isolate Surveillance Project, 27 Sites, United States, 2014}. MMWR. Surveillance Summaries 65.\newline
+\bibitem{Ohannessian}
+Ohannessian, Christine McCauley, and Lisa J. Crockett. 1993.\textit{A Longitudinal Investigation of the Relationship between Educational Investment and Adolescent Sexual Activity}. Journal of Adolescent Research 8(2): 167-182.\newline
+\bibitem{Owusu}
+Owusu-Edusei Jr, Kwame, Harrell W. Chesson, Thomas L. Gift, et al. 2013.	\textit{The Estimated Direct Medical Cost of Selected Sexually Transmitted Infections in the United States}, 2008. Sexually Transmitted Diseases 40(3): 197-201.\newline
+\bibitem{Rice}
+Rice, Roselyn J., Pacita L. Roberts, H. Hunter Handsfield, and King K. Holmes. 1991.\textit{Sociodemographic Distribution of Gonorrhea Incidence}: Implications for Prevention and Behavioral Research. American Journal of Public Health 81(10): 1252-1258.
+\newline
+\bibitem{Satterwhite}
+Satterwhite, Catherine Lindsey, Elizabeth Torrone, Elissa Meites, et al. 2013.	\textit{Sexually Transmitted Infections among US Women and Men}: Prevalence and Incidence Estimates, 2008. Sexually Transmitted Diseases 40(3): 187-193.\newline
+\bibitem{Scott}
+Scott-Jones, Diane, and Anne B. White. 1990.\textit{Correlates of Sexual Activity in Early Adolescence}. The Journal of Early Adolescence 10(2): 221-238.\newline
+\bibitem{Springer}
+Springer, Yuri P., Michael C. Samuel, and Gail Bolan. 2010.\textit{Socioeconomic Gradients in Sexually Transmitted Diseases}: A Geographic Information System-based Analysis of Poverty, Race/Ethnicity, and Gonorrhea Rates in California, 2004-2006. American Journal of Public Health 100(6): 1060-1067.\newline
+\bibitem{Thomas}
+Thomas, James C., Victor J. Schoenbach, Debra H. Weiner, Edith A. Parker, and Jo Anne Earp. 1996.\textit{Rural Gonorrhea in the Southeastern United States: A Neglected Epidemic?} American Journal of Epidemiology 143(3): 269-277.\newline
+\bibitem{Walker}
+Walker, Cheryl K., and Richard L. Sweet. 2011.\textit{Gonorrhea Infection in Women}: Prevalence, Effects, Screening, and Management. International Journal of Women's Health 3: 197.\newline
+\bibitem{Wi}
+Wi, Teodora, Monica M. Lahra, Francis Ndowa, et al. 2017.\textit{Antimicrobial Resistance in Neisseria Gonorrhoeae}: Global Surveillance and a Call for International Collaborative Action. PLOS Medicine 14(7): e1002344.\newline
+\bibitem{WorldBank}
+World Bank. 2008.	Sexually Transmitted Infections in Developing Countries: Current Concepts and Strategies on Improving STI Prevention, Treatment, and Control. Washington DC. \newline
+\url{ http://documents.worldbank.org/curated/en/867421468313772326/Sexually-transmitted-infections-in-developing-countries-current-concepts-
+and-strategies-on-improving-STI-prevention-treatment-and-control}\newline
+\bibitem{WorldHealth}
+World Health Organization. 2015.\textit{Report on Global Sexually Transmitted Infection Surveillance 2015}. Geneva: United Nations.<\url{http://apps.who.int/iris/bitstream/handle/10665/249553/9789241565301-eng.pdf?sequence=1.}\newline
+\bibitem{Zweig}
+Zweig, Janine M., Stacey D. Phillips, and Laura Duberstein Lindberg. 2002.\textit{Predicting Adolescent Profiles of Risk: Looking beyond Demographics}. Journal of Adolescent Health 31(4): 343-353.\newline
+
+\end{thebibliography}
+
+\end{document}
+
+
+
